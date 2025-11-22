@@ -8,6 +8,7 @@ Thumbs.db
 .env
 *.env
 venv/
+env/
 .env/
 
 .vscode/
