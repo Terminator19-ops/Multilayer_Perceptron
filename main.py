@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-from .src.train import gradient_descent
-from .src.model import forward_prop
-from .src.utils import cross_entropy
+from src.train import gradient_descent
+from src.model import forward_prop
+from src.utils import cross_entropy
 
 df = pd.read_csv('data/train.csv')
 df = np.array(df)

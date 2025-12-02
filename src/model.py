@@ -1,4 +1,4 @@
-from utils import Relu, Softmax
+from src.utils import Relu, Softmax
 import numpy as np
 
 
@@ -11,7 +11,7 @@ def init_params():
 
 def forward_prop(x, w1, b1, w2, b2):
     z1 = w1.dot(x) + b1
-    a1 = Relu(z1)
+    a1 = Relu(z1)   
     z2 = w2.dot(a1) + b2
     a2 = Softmax(z2)
 

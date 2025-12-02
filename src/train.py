@@ -1,5 +1,5 @@
-from .model import init_params, forward_prop, back_prop, update
-from .utils import one_hot_encode
+from src.model import init_params, forward_prop, back_prop, update
+from src.utils import one_hot_encode, cross_entropy
 
 def gradient_descent(X, Y, Y_test, alpha, iter):
     W1, B1, W2, B2 = init_params()
@@ -15,7 +15,7 @@ def gradient_descent(X, Y, Y_test, alpha, iter):
             W1,W2,B1,B2 = update(W1,W2,B1,B2,DW1,DW2,DB1,DB2,alpha)   
             
         if ik %20 == 0:
-                print(cross_entropy(Y_test, A2)) # type: ignore 
+            print(cross_entropy(Y_test, A2)) # type: ignore 
 #print(crossentropy(gradient_descent(in range (back))))
 
     return W1,W2,B1,B2
