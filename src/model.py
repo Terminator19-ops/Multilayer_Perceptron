@@ -15,7 +15,7 @@ def forward_prop(x, w1, b1, w2, b2):
     z2 = w2.dot(a1) + b2
     a2 = Softmax(z2)
 
-    return a1, a2, z1, z2
+    return a1, a2, z1
 
 def back_prop(x, y, a1, a2, z1, w2):
     dz2 = a2 - y

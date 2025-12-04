@@ -7,7 +7,7 @@ def deriv_relu(X):
     return(1 if X>0 else 0 )
 
 def Softmax(X):
-    e = np.exp(X - max(X))
+    e = np.exp(X - np.max(X))
     z = np.sum(e)
     y = e/z
     return y
@@ -20,8 +20,8 @@ def one_hot_encode(Y):
 def get_pred(A2):
     return np.argmax(A2,0)
 
-def get_accu(pred, Y):
-    return np.sum(pred == Y)/Y.size
+def get_accu(pred, Y, i):
+    return np.sum(pred == Y[i])/Y.size
 
 def cross_entropy(y_true,y_pred):
     prob_correct = np.sum(y_true*y_pred)

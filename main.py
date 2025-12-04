@@ -23,18 +23,10 @@ X_test = val_data[:,1:n+1]
 X_test = X_test/255
 X_test = X_test.T
 y_test = val_data[:,1]
-y_test = y_test.T
+y_test = y_test.reshape(10500,1)
 
 
-W1, W2, B1, B2 = gradient_descent(X_train, y_train, y_test, 0.01,100)
 
-a1, a2, z1, z2 = forward_prop(X_test,W1,B1,W2,B2)
-a2 = a2.T
-for x in a2:
-    print(x)
-a2.shape
+W1, W2, B1, B2 = gradient_descent(X_train, y_train,100, 0.0001,500)
 
-
-y_test = y_test.reshape((10500,1))
-loss = cross_entropy(y_test,a2)
-print(loss)
+np.savez("checkpoints/model_weights.npz",W1 = W1, W2 = W2, B1 = B1, B2 = B2)
