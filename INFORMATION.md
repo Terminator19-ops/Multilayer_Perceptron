@@ -27,22 +27,68 @@ introducing batching and increasing number of neurons
 
 ### 1. Shape Mismatch in Forward Propagation
 
--Symptom:
+- **Symptom**:
 Model crashed with shape errors in matrix multiplication.
 
--Root Cause:
+- **Root Cause**:
 Passing a sample of shape (784,) instead of (784,1).
 
--How I Diagnosed It:
+- **How I Diagnosed It**:
 Used debugger → inspected shape of c_x → saw flattening caused wrong shape.
 
--Fix Applied:
-Reshaped inputs with:
+- **Fix Applied**:
+Reshaped inputs using the code
 
 ` x = X[:, j].reshape(784, 1) `
 
 
--Concept Learned:
+- **Concept Learned**:
 Neural networks require column vectors; broadcasting leads to silent bugs.
+
+---
+### 2. Cross Entropy Returning Negative Loss
+
+- **Symptom**:
+Loss ~ -1.79, which is impossible for cross entropy.
+
+- **Root Cause**:
+Passing integer labels instead of one-hot encoded labels into loss.
+
+- **Diagnosis**:
+Printed y_true * y_pred → discovered broadcasting error.
+
+- **Fix Applied**:
+Used one-hot encoding during training.
+
+- **Concept Learned**:
+Cross entropy needs target probability distribution (one-hot).
+
+---
+
+## Concepts Learned
+
+- Difference between scalar labels and one-hot vectors
+
+- Why Softmax must be numerically stable
+
+- Cross entropy theory and correct usage
+
+- Column-vector convention for neural networks
+
+- Debugging with step-over & inspecting shapes
+
+- How to diagnose logic vs shape vs numerical bugs
+
+- Importance of shuffling in SGD
+
+- Mini-batch gradient descent workflow
+
+- Model capacity vs accuracy
+
+- Importance of separating training and testing logic
+
+- Why saving weights matters
+
+-Proper project structure (src/, utils/, model/, data/)
 
 
